@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     triggers {
-        pollscm ('*/60 * * * *')
+        pollSCM ('*/60 * * * *')
     }
     stages {
         stage('Preparing gradlew') {
