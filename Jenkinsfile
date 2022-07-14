@@ -28,8 +28,8 @@ pipeline {
                 sh 'name=$(echo "$message" | head -n1)'
                 sh 'description=$(echo "$message" | tail -n +3)'
                 sh 'description=$(echo "$description" | sed -z s/\n/\\n/g)'
-                sh 'release=$(curl -XPOST -H "Authorization:token $token" --data \'{"tag_name": "$tag", "target_commitish": "main", "name": "$name", "body": "$description", "draft": false, "prerelease": true}\' "https://api.github.com/repos/reinarQ/Jenkins---pipeline-as-code/releases")'
-                sh id=$(echo "$release" | sed -n -e 's/"id":\ \([0-9]\+\),/\1/p' | head -n 1 | sed 's/[[:blank:]]//g')
+                sh 'release=$(curl -XPOST -H "Authorization:token $token" --data \'{"tag_name": "$tag", "target_commitish": "main", "name": "$name", "body": "$description", "draft": false, "prerelease": true}\' "https://api.github.com/repos/reinarQ/Jenkins---pipeline-as-code/releases/$tag")'
+                sh 'id=$(echo "$release" | sed -n -e 's/"id":\ \([0-9]\+\),/\1/p' | head -n 1 | sed 's/[[:blank:]])'
                 sh 'https://api.github.com/repos/reinarQ/Jenkins---pipeline-as-code/releases/$id/assets?name=artifact.zip'
             }
         }
