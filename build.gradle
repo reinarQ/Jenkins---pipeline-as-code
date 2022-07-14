@@ -11,19 +11,14 @@ plugins {
     id 'java-library'
 }
 
-java {
-    toolchain {
-    	languageVersion = JavaLanguageVersion.of(11)
-    }
-}
-	
+
 repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
 }
 jar {
-    archivesBaseName = 'caesar-cipher'
+    archiveBaseName = 'caesar-cipher'
     manifest {
         attributes 'Implementation-Title': 'Caesar cipher',
                    'Main-Class': 'caesars.cipher.Main'
