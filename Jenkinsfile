@@ -41,5 +41,6 @@ pipeline {
                 echo 'Deploying....'
             }
         }
-    }
-    }
+        }   }
+        }
+        }
