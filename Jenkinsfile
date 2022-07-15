@@ -33,7 +33,7 @@ pipeline {
             steps {
                 sh 'token="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e"'
                 sh 'tag=$(git describe --tags)'
-                sh 'upload=$(curl -XPOST -H "Authorization:token $token" -H "Content-Type:application/octet-stream" --data-binary @artifact.zip "https://uploads.github.com/repos/reinarQ/caesar-cipher/releases/$id/assets?name=artifact.zip")'
+                sh 'upload=$(curl -XPOST -H "Authorization:token $token" -H "Content-Type:application/octet-stream" --data-binary @build/libs/caesar-cipher.jar "https://uploads.github.com/repos/reinarQ/caesar-cipher/releases/$tag/assets?name=caesar-cipher.jar")'
             }        
         }
         stage('Deploy') {
