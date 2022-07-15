@@ -29,6 +29,12 @@ pipeline {
                 sh 'description=$(echo "$message" | tail -n +3)'
                 sh 'release=$(curl -XPOST -H "Authorization": "$token" --data \'{"tag_name": "$tag", "target_commitish": "main", "name": "$name", "body": "$description", "draft": false, "prerelease": false}\' "https://api.github.com/repos/reinarQ/caesar-cipher/releases")'
             }
+        stage('Upload artifact to Github') {
+            steps {
+                sh 'token="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e"'
+                sh 'tag=$(git describe --tags)'
+                sh 'upload=$(curl -XPOST -H "Authorization:token $token" -H "Content-Type:application/octet-stream" --data-binary @artifact.zip https://uploads.github.com/repos/reinarQ/caesar-cipher/releases/$id/assets?name=artifact.zip'
+            }        
         }
         stage('Deploy') {
             steps {
