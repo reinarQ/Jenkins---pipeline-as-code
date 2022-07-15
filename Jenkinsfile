@@ -27,7 +27,6 @@ pipeline {
                 sh 'name=$(echo "$message" | head -n1)'
                 sh 'description=$(echo "$message" | tail -n +3)'
                 sh 'release=$(curl -XPOST -H "Authorization:token $token" --data \'{"tag_name": "$tag", "target_commitish": "main", "name": "$name", "body": "$description", "draft": false, "prerelease": true}\' "https://api.github.com/repos/reinarQ/Jenkins---pipeline-as-code/releases/$tag")'
-                sh 'https://api.github.com/repos/reinarQ/Jenkins---pipeline-as-code/releases/$id/assets?name=artifact.zip'
             }
         }
         stage('Deploy') {
